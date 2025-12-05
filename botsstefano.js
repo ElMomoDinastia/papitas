@@ -64,6 +64,25 @@ async function main() {
         await nickInput.type(BOT_NICKNAME);
         await nickInput.press('Enter');
 
+        // --- NUEVO: Manejar contraseña si existe ---
+        if (process.env.HAXBALL_PASSWORD) {
+            console.log("⏳ Esperando input de contraseña...");
+
+            try {
+                const passSelector = 'input[data-hook="input"][maxlength="25"]';
+                const passInput = await frame.waitForSelector(passSelector, { timeout: 6000 });
+
+                console.log("🔐 Escribiendo contraseña...");
+                await passInput.click({ clickCount: 3 });
+                await passInput.type(process.env.HAXBALL_PASSWORD);
+                await passInput.press('Enter');
+
+                console.log("🔓 Contraseña enviada correctamente");
+            } catch (err) {
+                console.log("ℹ️ No apareció input de contraseña, probablemente la sala no tiene password.");
+            }
+        }
+
         // Esperar 5 segundos antes de spamear
         await new Promise(resolve => setTimeout(resolve, 5000));
 
@@ -132,7 +151,7 @@ async function main() {
         });
 
         await frame.evaluate((botNick) => {
-            const chatContainer = document.querySelector('.chat-messages'); // ajustar según el DOM real
+            const chatContainer = document.querySelector('.chat-messages'); 
             if (!chatContainer) return;
 
             const observer = new MutationObserver(mutations => {
