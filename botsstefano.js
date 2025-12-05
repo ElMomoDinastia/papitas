@@ -54,10 +54,11 @@ async function main() {
 
         if (!frame) throw new Error('No se pudo acceder al iframe de Haxball');
 
-        // NICKNAME
+        // --- NICKNAME ---
         console.log("Escribiendo el nombre de usuario...");
         const nickSelector = 'input[data-hook="input"][maxlength="25"]';
         await frame.waitForSelector(nickSelector, { timeout: 15000 });
+
         const nickInput = await frame.$(nickSelector);
         await nickInput.click();
         await nickInput.type(BOT_NICKNAME);
@@ -68,29 +69,40 @@ async function main() {
             console.log("⏳ Esperando input de contraseña...");
 
             try {
-                // espera a que aparezca un segundo input (el primero fue el nick)
-                await frame.waitForFunction(() => {
-                    return document.querySelectorAll('input[data-hook="input"]').length >= 2;
-                }, { timeout: 8000 });
+                const passSelector = 'input[data-hook="input"][maxlength="30"]';
+                await frame.waitForSelector(passSelector, { timeout: 15000 });
+                const passInput = await frame.$(passSelector);
 
-                const inputs = await frame.$$('input[data-hook="input"]');
-                const passInput = inputs[1];
+                console.log("🔐 Input de contraseña detectado. Haciendo click REAL...");
 
-                console.log("🔐 Escribiendo contraseña...");
-                await passInput.click();
-                await passInput.type(process.env.HAXBALL_PASSWORD);
-                await passInput.press('Enter');
+                const box = await passInput.boundingBox();
+                if (box) {
+                    await page.mouse.click(
+                        box.x + box.width / 2,
+                        box.y + box.height / 2,
+                        { clickCount: 1 }
+                    );
+                } else {
+                    await passInput.click({ delay: 80 });
+                }
+
+                await frame.waitForTimeout(300);
+
+                console.log("⌨️ Escribiendo contraseña...");
+                await passInput.type(process.env.HAXBALL_PASSWORD, { delay: 60 });
+                await passInput.press("Enter");
 
                 console.log("🔓 Contraseña enviada correctamente");
+
             } catch (err) {
-                console.log("ℹ️ No apareció input de contraseña. Sala sin password.");
+                console.log("ℹ️ No apareció input de contraseña. Probablemente sala sin password.");
             }
         }
 
-        // Delay
-        await new Promise(resolve => setTimeout(resolve, 3000));
+        // Pequeño delay antes del captcha
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
-        // CAPTCHA "only humans"
+        // --- CAPTCHA ---
         try {
             const onlyHumansButton = await frame.waitForSelector('button', { timeout: 5000 });
             await onlyHumansButton.click();
@@ -99,7 +111,7 @@ async function main() {
             console.log("ℹ️ No apareció captcha.");
         }
 
-        // CHAT
+        // --- CHAT ---
         const chatSelector = 'input[data-hook="input"][maxlength="140"]';
         await frame.waitForSelector(chatSelector, { timeout: 15000 });
 
@@ -141,7 +153,7 @@ async function main() {
             }
         }, 30000);
 
-        // Enviar mensajes del chat a Discord
+        // CHAT → DISCORD
         await page.exposeFunction('sendToDiscord', async ({ nick, msg }) => {
             await notifyDiscord(`💬 **${nick}**: ${msg}`);
         });
@@ -230,4 +242,3 @@ async function iniciarBotConReintentos() {
 }
 
 iniciarBotConReintentos();
-
