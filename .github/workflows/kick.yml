@@ -41,4 +41,4 @@ jobs:
       - name: Run viewer bot
         run: |
           echo "Running job ID ${{ matrix.id }} for channel: $CHANNEL"
-          python main.py
+          python bot.py
