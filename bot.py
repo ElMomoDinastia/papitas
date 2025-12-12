@@ -37,58 +37,54 @@ def clean_channel_name(name):
         return channel.lower()
     return name.lower()
 
-def get_channel_info(name):
+def get_channel_info(slug):
     global channel_id, stream_id
 
-    s = tls_client.Session(
+    session = tls_client.Session(
         client_identifier="chrome_131",
         random_tls_extension_order=True
     )
 
     headers = {
-        "authority": "kick.com",
-        "accept": "application/json, text/plain, */*",
-        "accept-language": "en-US,en;q=0.9",
-        "origin": "https://kick.com",
-        "referer": f"https://kick.com/{name}",
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "es-ES,es;q=0.9",
+        "Referer": f"https://kick.com/{slug}",
     }
 
-    url = f"https://kick.com/api/v2/channels/{name}"
+    url = f"https://kick.com/{slug}"
+    r = session.get(url, headers=headers)
+
+    print("DEBUG STATUS:", r.status_code)
+    print("DEBUG FIRST BYTES:", r.text[:150])
+
+    if r.status_code != 200:
+        print("ERROR HTML:", r.status_code)
+        return None
+
+    import re, json
+    match = re.search(r'__NEXT_DATA__" type="application/json">(.+?)</script>', r.text)
+    if not match:
+        print("ERROR: No se encontró NEXT_DATA")
+        return None
+
+    data = json.loads(match.group(1))
 
     try:
-        r = s.get(url, headers=headers)
+        channel = data["props"]["pageProps"]["data"]["channel"]
 
-        print("DEBUG STATUS:", r.status_code)
-        print("DEBUG FIRST BYTES:", r.text[:150])
+        # channel_id
+        channel_id = channel.get("id")
 
-        if r.status_code != 200:
-            print("Kick bloqueó la request, reintentando por /api/v1/")
-            
-            # fallback estable
-            r = s.get(f"https://kick.com/api/v1/channels/{name}", headers=headers)
-
-            if r.status_code != 200:
-                print("ERROR: No se pudo obtener el canal en ninguna API")
-                return None
-
-        data = r.json()
-
-        channel_id = data.get("id")
-
-        if data.get("livestream"):
-            stream_id = data["livestream"]["id"]
-        else:
-            stream_id = None
+        # stream_id (si está en vivo)
+        stream = channel.get("livestream")
+        stream_id = stream.get("id") if stream else None
 
         print(f"[OK] channel_id={channel_id}, stream_id={stream_id}")
         return channel_id
 
     except Exception as e:
-        print("ERROR get_channel_info:", e)
+        print("ERROR PARSE:", e)
         return None
 
 
