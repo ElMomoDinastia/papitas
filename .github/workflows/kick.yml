@@ -2,8 +2,18 @@ name: Kick Multi-Job Bot
 
 on:
   workflow_dispatch:
+    inputs:
+      CHANNEL:
+        description: "Canal a atacar"
+        required: true
+        default: "canal_unico"
+      VIEWERS:
+        description: "Cantidad de viewers por bot"
+        required: true
+        default: "250"
 
 jobs:
+
   bot1:
     runs-on: ubuntu-latest
     steps:
@@ -14,9 +24,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 1
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot2:
@@ -29,9 +38,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 2
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot3:
@@ -44,9 +52,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 3
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot4:
@@ -59,9 +66,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 4
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot5:
@@ -74,9 +80,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 5
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot6:
@@ -89,9 +94,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 6
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot7:
@@ -104,9 +108,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 7
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot8:
@@ -119,9 +122,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 8
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot9:
@@ -134,9 +136,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 9
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot10:
@@ -149,9 +150,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 10
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot11:
@@ -164,9 +164,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 11
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot12:
@@ -179,9 +178,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 12
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot13:
@@ -194,9 +192,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 13
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot14:
@@ -209,9 +206,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 14
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot15:
@@ -224,9 +220,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 15
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot16:
@@ -239,9 +234,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 16
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot17:
@@ -254,9 +248,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 17
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot18:
@@ -269,9 +262,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 18
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot19:
@@ -284,9 +276,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 19
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
 
   bot20:
@@ -299,7 +290,6 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run bot 20
         env:
-          CLIENT_TOKEN: ${{ secrets.CLIENT_TOKEN }}
-          CHANNEL: canal_unico
-          VIEWERS: 250
+          CHANNEL: ${{ github.event.inputs.CHANNEL }}
+          VIEWERS: ${{ github.event.inputs.VIEWERS }}
         run: python bot.py
