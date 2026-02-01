@@ -17,37 +17,37 @@ jobs:
       max-parallel: 15
       matrix:
         include:
-          - recaptcha_token: "thr1.AAAAAGlSm5zDhSMxJguAaQ.bgZ2gnDddvc"
+          - recaptcha_token: "thr1.AAAAAGl-wsTG0bzxFDOR3g.sy26vlIOThI"
             index: 0
-          - recaptcha_token: "thr1.AAAAAGlSm6uO7GcnF2c12w.cwfKH24nszA"
+          - recaptcha_token: "thr1.AAAAAGl-ws7BL5y-ZeNCeA.JM80T2zpwaM"
             index: 1
-          - recaptcha_token: "thr1.AAAAAGlSm8OBDiCogoz8dg.13eYv7Dh8bg"
+          - recaptcha_token: "thr1.AAAAAGl-wtiyy-oZkdBa3g.PwA6D6OlvTU"
             index: 2
-          - recaptcha_token: "thr1.AAAAAGlSm9rtTcdajHD8KA.gym8zYJXZmI"
+          - recaptcha_token: "thr1.AAAAAGl-wuyKNhVa7C7sgg.EJmBQ8S3HQU"
             index: 3
-          - recaptcha_token: "thr1.AAAAAGlSm-XdARO9Y4lDoQ.V0bQMV_7pTY"
+          - recaptcha_token: "thr1.AAAAAGl-wwYwzc_st_WsMw.lUKjWtvlI9Y"
             index: 4
-          - recaptcha_token: "thr1.AAAAAGlSm-yshFeNGbu29g.9j7U-farTWY"
+          - recaptcha_token: "thr1.AAAAAGl-wxUwRVtSBxCNeg.3abLc7yGfs8"
             index: 5
-          - recaptcha_token: "thr1.AAAAAGlSm_yqg3N94Hm5aQ.lm1Pu_uYxRs"
+          - recaptcha_token: "thr1.AAAAAGl-wypom8zzTZFW1w.E4blArtG_Po"
             index: 6
-          - recaptcha_token: "thr1.AAAAAGlSnEFwifLW_lb9dQ.8WOMkjmW41g"
+          - recaptcha_token: "thr1.AAAAAGl-w0ND8DcPaa5GsA.UPnsQNaICCY"
             index: 7
-          - recaptcha_token: "thr1.AAAAAGlSnEpa_TBR0r7fqg.bGpXCO5HQW0"
+          - recaptcha_token: "thr1.AAAAAGl-w3LzMLdV4lmk9A.J_YIxBw3UzI"
             index: 8
-          - recaptcha_token: "thr1.AAAAAGlSnFcLVREvRsE4Cw.Fowm91y9Fps"
+          - recaptcha_token: "thr1.AAAAAGl-w5Ko46qTGtAlgA.grSKv2kXRBs"
             index: 9
-          - recaptcha_token: "thr1.AAAAAGlSnGwNbXtXfNig3Q.5sGHSAYHn_M"
+          - recaptcha_token: "thr1.AAAAAGl-w55xH2lXBiB2fg.OMX_gAsWPl0"
             index: 10
-          - recaptcha_token: "thr1.AAAAAGlSm-XdARO9Y4lDoQ.V0bQMV_7pTY"
+          - recaptcha_token: "thr1.AAAAAGl-w6vU5Qvja0d55A.TknquBIkr8o"
             index: 11
-          - recaptcha_token: "thr1.AAAAAGlSm-yshFeNGbu29g.9j7U-farTWY"
+          - recaptcha_token: "thr1.AAAAAGl-w7021FGDc_etSQ.G5khokvjb3g"
             index: 12
-          - recaptcha_token: "thr1.AAAAAGlSm_yqg3N94Hm5aQ.lm1Pu_uYxRs"
+          - recaptcha_token: "thr1.AAAAAGl-w-_RIMUWaDfWWw.UnNRo9k4Ji4"
             index: 13
-          - recaptcha_token: "thr1.AAAAAGlSnEFwifLW_lb9dQ.8WOMkjmW41g"
+          - recaptcha_token: "thr1.AAAAAGl-xAUayvLX2JSvMw.5hmlOFw96N4"
             index: 14
-          - recaptcha_token: "thr1.AAAAAGlSnEpa_TBR0r7fqg.bGpXCO5HQW0"
+          - recaptcha_token: "thr1.AAAAAGl-xBoTK_6vURHAcA.nQgWNAdJkik"
 
     steps:
       - name: 🧩 Checkout repo
