@@ -68,29 +68,20 @@ async function sendDiscordRoomLink(webhookUrl, roomLink, roomName) {
 /* ---------- Config (modificable / rotativo por INDEX) ---------- */
 
 const roomNames = [
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢",
-    "🟢 KICK: agruck ON 🟢"
+    "❤️ Lowsita × Lowsito ❤️"
 ];
 
 // LISTA DE GEOS SOLICITADAS
 const geoList = [
-    { lat: -34.5082740783691, lon: -58.427734375, flag: "AR" },
-    { lat: -34.5082740783691, lon: -58.427734375, flag: "AR" },
-    { lat: -34.5429039001465, lon: -58.4013328552246, flag: "AR" },
+    { lat: -28.6874008178711, lon: -61.6473999023438, flag: "AR" },
+    { lat: -32.9477348327637, lon: -60.6307067871094, flag: "AR" },
+    { lat: -31.4293041229248, lon: -64.1662750244141, flag: "AR" },
     { lat: -34.6300010681152, lon: -58.3814010620117, flag: "AR" },
-    { lat: -34.7786636352539, lon: -58.4580917358398, flag: "AR" }
+    { lat: -26.8326835632324, lon: -65.2039566040039, flag: "AR" }
 ];
 
-const maxPlayersList = [12, 12, 12, 12, 12];
-const fakePlayersList = [9, 9, 9, 9, 9];
+const maxPlayersList = [1, 1, 1, 1, 1];
+const fakePlayersList = [30, 30, 30, 30, 30];
 
 /* ---------- Env / selección por index ---------- */
 
@@ -152,10 +143,9 @@ Room.create(
                 sendDiscordPlayer(webhookUrl, playerObj, roomName);
 
                 const mensajes = [
-                    "🟢🟢🟢  BIENVENIDO REY  🟢🟢🟢",
-                    "💚 MIRÁ EL STREAM EN VIVO AHORA DE kick.com/agruck 💚",
-                    "🟢 SALA EN KICK ACTIVA: www.haxball.com/play?c=MsABokfCpe4",
-                    "💚 SEGUINOS EN KICK: kick.com/agruck 💚"
+                    "❤️ Lowsita × Lowsito ❤️",
+                    "La mas linda Kiara",
+                    
                 ];
 
                 let i = 0;
