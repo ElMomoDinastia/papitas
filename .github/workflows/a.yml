@@ -17,38 +17,36 @@ jobs:
       max-parallel: 15
       matrix:
         include:
-          - recaptcha_token: "thr1.AAAAAGl-wsTG0bzxFDOR3g.sy26vlIOThI"
+          - recaptcha_token: "thr1.AAAAAGl-xi2qh61yHg-1TQ.unHu_pcZwkE"
             index: 0
-          - recaptcha_token: "thr1.AAAAAGl-ws7BL5y-ZeNCeA.JM80T2zpwaM"
+          - recaptcha_token: "thr1.AAAAAGl-xj96oYvAMOP8aw.2l06wiBXjn8"
             index: 1
-          - recaptcha_token: "thr1.AAAAAGl-wtiyy-oZkdBa3g.PwA6D6OlvTU"
+          - recaptcha_token: "thr1.AAAAAGl-xlCeszH3t0P5sA.Lg8m_3H8P88"
             index: 2
-          - recaptcha_token: "thr1.AAAAAGl-wuyKNhVa7C7sgg.EJmBQ8S3HQU"
+          - recaptcha_token: "thr1.AAAAAGl-xm6kJpQ9EwJG0A.y3MiqUNQ3O8"
             index: 3
-          - recaptcha_token: "thr1.AAAAAGl-wwYwzc_st_WsMw.lUKjWtvlI9Y"
+          - recaptcha_token: "thr1.AAAAAGl-xqXQibsI5QVPJA.V_MBeuR3kOY"
             index: 4
-          - recaptcha_token: "thr1.AAAAAGl-wxUwRVtSBxCNeg.3abLc7yGfs8"
+          - recaptcha_token: "thr1.AAAAAGl-xuR8ED0QyWrWaQ.EGoU4SHf9Ko"
             index: 5
-          - recaptcha_token: "thr1.AAAAAGl-wypom8zzTZFW1w.E4blArtG_Po"
+          - recaptcha_token: "thr1.AAAAAGl-x2nCS14vW97uWg.Yb_1thaqFXE"
             index: 6
-          - recaptcha_token: "thr1.AAAAAGl-w0ND8DcPaa5GsA.UPnsQNaICCY"
+          - recaptcha_token: "thr1.AAAAAGl-x5ZkRGu_V3N3Hg.kOXVmxOfQig"
             index: 7
-          - recaptcha_token: "thr1.AAAAAGl-w3LzMLdV4lmk9A.J_YIxBw3UzI"
+          - recaptcha_token: "thr1.AAAAAGl-x7CNsarC9CzBVg._Uqssx5VmxY"
             index: 8
-          - recaptcha_token: "thr1.AAAAAGl-w5Ko46qTGtAlgA.grSKv2kXRBs"
+          - recaptcha_token: "thr1.AAAAAGl-x9PTMDIHebPtmQ.wqlA12fI9_g"
             index: 9
-          - recaptcha_token: "thr1.AAAAAGl-w55xH2lXBiB2fg.OMX_gAsWPl0"
+          - recaptcha_token: "thr1.AAAAAGl-x-YL666skiOd0Q.fu1s72jm910"
             index: 10
-          - recaptcha_token: "thr1.AAAAAGl-w6vU5Qvja0d55A.TknquBIkr8o"
+          - recaptcha_token: "thr1.AAAAAGl-x_99yXJ6B3cDAQ.lkRL5hsSn78"
             index: 11
-          - recaptcha_token: "thr1.AAAAAGl-w7021FGDc_etSQ.G5khokvjb3g"
+          - recaptcha_token: "thr1.AAAAAGl-yB-Br6f19pVAjw.B_Yzc131jn0"
             index: 12
-          - recaptcha_token: "thr1.AAAAAGl-w-_RIMUWaDfWWw.UnNRo9k4Ji4"
+          - recaptcha_token: "thr1.AAAAAGl-yEJN3NxoWXm6ag.-AXKRS6-KcQ"
             index: 13
-          - recaptcha_token: "thr1.AAAAAGl-xAUayvLX2JSvMw.5hmlOFw96N4"
+          - recaptcha_token: "thr1.AAAAAGl-yFQ6_YThaobX9g.W8iwJX8kc0k"
             index: 14
-          - recaptcha_token: "thr1.AAAAAGl-xBoTK_6vURHAcA.nQgWNAdJkik"
-
     steps:
       - name: 🧩 Checkout repo
         uses: actions/checkout@v4
