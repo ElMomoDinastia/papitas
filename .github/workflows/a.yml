@@ -17,35 +17,35 @@ jobs:
       max-parallel: 15
       matrix:
         include:
-          - recaptcha_token: "thr1.AAAAAGl-xi2qh61yHg-1TQ.unHu_pcZwkE"
+          - recaptcha_token: "thr1.AAAAAGmA4UZARJoZS_2wMw.1GIYZqrc5cg"
             index: 0
-          - recaptcha_token: "thr1.AAAAAGl-xj96oYvAMOP8aw.2l06wiBXjn8"
+          - recaptcha_token: "thr1.AAAAAGmA4VUyeeBirkzC-g.hSPk4m8wV64"
             index: 1
-          - recaptcha_token: "thr1.AAAAAGl-xlCeszH3t0P5sA.Lg8m_3H8P88"
+          - recaptcha_token: "thr1.AAAAAGmA4Wn2T9zA-Gwicw.OprCW9RXUSQ"
             index: 2
-          - recaptcha_token: "thr1.AAAAAGl-xm6kJpQ9EwJG0A.y3MiqUNQ3O8"
+          - recaptcha_token: "thr1.AAAAAGmA4YGcsKJaVwNn6Q.oVfmDQJlgLw"
             index: 3
-          - recaptcha_token: "thr1.AAAAAGl-xqXQibsI5QVPJA.V_MBeuR3kOY"
+          - recaptcha_token: "thr1.AAAAAGmA4Y_-G2t5rlJBEQ.jAO66KvgmKw"
             index: 4
-          - recaptcha_token: "thr1.AAAAAGl-xuR8ED0QyWrWaQ.EGoU4SHf9Ko"
+          - recaptcha_token: "thr1.AAAAAGmA4fM3n93T5F1yeA.DAkTW66Nk1g"
             index: 5
-          - recaptcha_token: "thr1.AAAAAGl-x2nCS14vW97uWg.Yb_1thaqFXE"
+          - recaptcha_token: "thr1.AAAAAGmA4lh1bTlZ-Vlc-Q.oYQobiqEZOY"
             index: 6
-          - recaptcha_token: "thr1.AAAAAGl-x5ZkRGu_V3N3Hg.kOXVmxOfQig"
+          - recaptcha_token: "thr1.AAAAAGmA4nT0uZa_qSkAaA.4Px-a6oQFcU"
             index: 7
-          - recaptcha_token: "thr1.AAAAAGl-x7CNsarC9CzBVg._Uqssx5VmxY"
+          - recaptcha_token: "thr1.AAAAAGmA4o9wJtEqvC9N-g.TvmYUfFZCoA"
             index: 8
-          - recaptcha_token: "thr1.AAAAAGl-x9PTMDIHebPtmQ.wqlA12fI9_g"
+          - recaptcha_token: "thr1.AAAAAGmA4p3jOVjUHRiumA.r3TcB7a1sHY"
             index: 9
-          - recaptcha_token: "thr1.AAAAAGl-x-YL666skiOd0Q.fu1s72jm910"
+          - recaptcha_token: "thr1.AAAAAGmA4rSbbBQOry5Y3w.83yLgYu4PI8"
             index: 10
-          - recaptcha_token: "thr1.AAAAAGl-x_99yXJ6B3cDAQ.lkRL5hsSn78"
+          - recaptcha_token: "thr1.AAAAAGmA4uGfHRTnkay8tg.s1tI_fpsENI"
             index: 11
-          - recaptcha_token: "thr1.AAAAAGl-yB-Br6f19pVAjw.B_Yzc131jn0"
+          - recaptcha_token: "thr1.AAAAAGmA4vJ9vEw8gJa-OQ.MjPwvB6iiqY"
             index: 12
-          - recaptcha_token: "thr1.AAAAAGl-yEJN3NxoWXm6ag.-AXKRS6-KcQ"
+          - recaptcha_token: "thr1.AAAAAGmA4wLDsUMOA85uYg.-8hYO14zsRU"
             index: 13
-          - recaptcha_token: "thr1.AAAAAGl-yFQ6_YThaobX9g.W8iwJX8kc0k"
+          - recaptcha_token: "thr1.AAAAAGmA4xRDrNaR2mIp5g.xzhvXpJBbrM"
             index: 14
     steps:
       - name: 🧩 Checkout repo
