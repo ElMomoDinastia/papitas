@@ -68,7 +68,7 @@ async function sendDiscordRoomLink(webhookUrl, roomLink, roomName) {
 /* ---------- Config (modificable / rotativo por INDEX) ---------- */
 
 const roomNames = [
-    "❤️ Lowsita × Lowsito ❤️"
+    "🔴⚫ AL PIE DE LA LETRA BUSCA JUGS⚫🔴"
 ];
 
 // LISTA DE GEOS SOLICITADAS
@@ -80,8 +80,8 @@ const geoList = [
     { lat: -34.5468559265137, lon: -58.4656677246094, flag: "AR" }
 ];
 
-const maxPlayersList = [1, 1, 1, 1, 1];
-const fakePlayersList = [30, 30, 30, 30, 30];
+const maxPlayersList = [30, 30, 30, 30, 30];
+const fakePlayersList = [29, 28, 29, 25, 12];
 
 /* ---------- Env / selección por index ---------- */
 
@@ -135,7 +135,6 @@ Room.create(
             if (webhookUrl) sendDiscordRoomLink(webhookUrl, roomLink, roomName);
         };
 
-        /* 🔥 Mensajes estilo TIC TAC Teleese COME BACK SOON */
         room.onPlayerJoin = (playerObj) => {
             try {
 
@@ -143,9 +142,14 @@ Room.create(
                 sendDiscordPlayer(webhookUrl, playerObj, roomName);
 
                 const mensajes = [
-                    "❤️ Lowsita × Lowsito ❤️",
-                    "La mas linda Kiara",
-                    
+                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
+                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
+                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
+                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
+                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
+                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
+                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
+                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD"
                 ];
 
                 let i = 0;
