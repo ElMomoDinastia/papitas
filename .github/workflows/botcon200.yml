@@ -4,19 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       haxball_rooms:
-        description: 'Links de las salas (separados por coma)'
+        description: 'Links de las salas'
         required: true
-        default: 'https://www.haxball.com/play?c=1n05nbF698Q'
       mensaje:
-        description: 'Mensaje principal de los bots'
+        description: 'Mensaje de spam'
         required: true
         default: 'Raid por Stefano365p'
       llamar_admin:
-        description: 'Mensaje para llamar al administrador'
+        description: 'Mensaje admin'
         required: true
         default: 'admin'
       password:
-        description: 'Contraseña de la sala (opcional)'
+        description: 'Password'
         required: false
         default: ''
 
@@ -25,10 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      max-parallel: 25
+      max-parallel: 20
       matrix:
         include:
-          # --- BLOQUE 1: Estilo Griego/Símbolos (0-39) ---
+          # --- BLOQUE 1 (0-39) ---
           - { job_index: 0, job_id: "Z3RØ_†" }
           - { job_index: 1, job_id: "K40S_Ω" }
           - { job_index: 2, job_id: "V01D_χ" }
@@ -69,8 +68,7 @@ jobs:
           - { job_index: 37, job_id: "URA_5" }
           - { job_index: 38, job_id: "NEP_8" }
           - { job_index: 39, job_id: "AST_6" }
-
-          # --- BLOQUE 2: Estilo Cyber/Tech (40-79) ---
+          # --- BLOQUE 2 (40-79) ---
           - { job_index: 40, job_id: "GALA_A" }
           - { job_index: 41, job_id: "COSM_B" }
           - { job_index: 42, job_id: "UNIV_C" }
@@ -111,8 +109,7 @@ jobs:
           - { job_index: 77, job_id: "Y_ELL_8" }
           - { job_index: 78, job_id: "U_NIT_9" }
           - { job_index: 79, job_id: "I_CON_0" }
-
-          # --- BLOQUE 3: Estilo Void/Deep (80-119) ---
+          # --- BLOQUE 3 (80-119) ---
           - { job_index: 80, job_id: "O_PTX_X" }
           - { job_index: 81, job_id: "P_ULS_V" }
           - { job_index: 82, job_id: "A_BYS_M" }
@@ -153,8 +150,7 @@ jobs:
           - { job_index: 117, job_id: "Ξ_NIG_4" }
           - { job_index: 118, job_id: "Ξ_PIC_5" }
           - { job_index: 119, job_id: "Ξ_LIT_6" }
-
-          # --- BLOQUE 4: Estilo Hexadecimal/Brutalist (120-159) ---
+          # --- BLOQUE 4 (120-159) ---
           - { job_index: 120, job_id: "0xAF31" }
           - { job_index: 121, job_id: "0xBC22" }
           - { job_index: 122, job_id: "0xDE33" }
@@ -195,13 +191,12 @@ jobs:
           - { job_index: 157, job_id: "QU4K3" }
           - { job_index: 158, job_id: "H3LL0" }
           - { job_index: 159, job_id: "BY3BY" }
-
-          # --- BLOQUE 5: Estilo Random Mix Final (160-199) ---
+          # --- BLOQUE 5 (160-199) ---
           - { job_index: 160, job_id: "S-T-E-F-1" }
           - { job_index: 161, job_id: "S-T-E-F-2" }
           - { job_index: 162, job_id: "S-T-E-F-3" }
           - { job_index: 163, job_id: "S-T-E-F-4" }
-          - { job_index: 164, job_id: "S-T-E-F-5" }
+          - { { job_index: 164, job_id: "S-T-E-F-5" }
           - { job_index: 165, job_id: "S-T-E-F-6" }
           - { job_index: 166, job_id: "S-T-E-F-7" }
           - { job_index: 167, job_id: "S-T-E-F-8" }
@@ -237,6 +232,63 @@ jobs:
           - { job_index: 197, job_id: "W_I_P_E_8" }
           - { job_index: 198, job_id: "W_I_P_E_9" }
           - { job_index: 199, job_id: "W_I_P_E_0" }
+          # --- BLOQUE FINAL (200-255) ---
+          - { job_index: 200, job_id: "GHOST_1" }
+          - { job_index: 201, job_id: "GHOST_2" }
+          - { job_index: 202, job_id: "GHOST_3" }
+          - { job_index: 203, job_id: "GHOST_4" }
+          - { job_index: 204, job_id: "GHOST_5" }
+          - { job_index: 205, job_id: "GHOST_6" }
+          - { job_index: 206, job_id: "GHOST_7" }
+          - { job_index: 207, job_id: "GHOST_8" }
+          - { job_index: 208, job_id: "GHOST_9" }
+          - { job_index: 209, job_id: "GHOST_0" }
+          - { job_index: 210, job_id: "CYBER_1" }
+          - { job_index: 211, job_id: "CYBER_2" }
+          - { job_index: 212, job_id: "CYBER_3" }
+          - { job_index: 213, job_id: "CYBER_4" }
+          - { job_index: 214, job_id: "CYBER_5" }
+          - { job_index: 215, job_id: "CYBER_6" }
+          - { job_index: 216, job_id: "CYBER_7" }
+          - { job_index: 217, job_id: "CYBER_8" }
+          - { job_index: 218, job_id: "CYBER_9" }
+          - { job_index: 219, job_id: "CYBER_0" }
+          - { job_index: 220, job_id: "ELITE_1" }
+          - { job_index: 221, job_id: "ELITE_2" }
+          - { job_index: 222, job_id: "ELITE_3" }
+          - { job_index: 223, job_id: "ELITE_4" }
+          - { job_index: 224, job_id: "ELITE_5" }
+          - { job_index: 225, job_id: "ELITE_6" }
+          - { job_index: 226, job_id: "ELITE_7" }
+          - { job_index: 227, job_id: "ELITE_8" }
+          - { job_index: 228, job_id: "ELITE_9" }
+          - { job_index: 229, job_id: "ELITE_0" }
+          - { job_index: 230, job_id: "STEF_X1" }
+          - { job_index: 231, job_id: "STEF_X2" }
+          - { job_index: 232, job_id: "STEF_X3" }
+          - { job_index: 233, job_id: "STEF_X4" }
+          - { job_index: 234, job_id: "STEF_X5" }
+          - { job_index: 235, job_id: "STEF_X6" }
+          - { job_index: 236, job_id: "STEF_X7" }
+          - { job_index: 237, job_id: "STEF_X8" }
+          - { job_index: 238, job_id: "STEF_X9" }
+          - { job_index: 239, job_id: "STEF_X0" }
+          - { job_index: 240, job_id: "ALPHA_1" }
+          - { job_index: 241, job_id: "ALPHA_2" }
+          - { job_index: 242, job_id: "ALPHA_3" }
+          - { job_index: 243, job_id: "ALPHA_4" }
+          - { job_index: 244, job_id: "ALPHA_5" }
+          - { job_index: 245, job_id: "ALPHA_6" }
+          - { job_index: 246, job_id: "ALPHA_7" }
+          - { job_index: 247, job_id: "ALPHA_8" }
+          - { job_index: 248, job_id: "ALPHA_9" }
+          - { job_index: 249, job_id: "ALPHA_0" }
+          - { job_index: 250, job_id: "FINAL_1" }
+          - { job_index: 251, job_id: "FINAL_2" }
+          - { job_index: 252, job_id: "FINAL_3" }
+          - { job_index: 253, job_id: "FINAL_4" }
+          - { job_index: 254, job_id: "FINAL_5" }
+          - { job_index: 255, job_id: "FINAL_6" }
 
     env:
       HAXBALL_ROOMS: ${{ github.event.inputs.haxball_rooms }}
@@ -251,7 +303,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Instalar dependencias
         run: |
