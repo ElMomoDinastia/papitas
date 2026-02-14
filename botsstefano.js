@@ -108,7 +108,7 @@ async function main() {
         const chatInterval = setInterval(async () => {
             try { await sendMessageToChat(frame, process.env.MENSAJE); }
             catch (error) { clearInterval(chatInterval); throw new Error('Perdida de conexión con el chat'); }
-        }, 100); // Velocidad pedida de 200ms
+        }, 200); // Velocidad pedida de 200ms
 
         // --- ANTI-AFK ---
         const moves = ['w','a','s','d'];
