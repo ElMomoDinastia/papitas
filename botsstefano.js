@@ -185,7 +185,7 @@ async function sendMessageToChat(frame, message) {
 
 // --- REINTENTOS ---
 let intentos = 0;
-const MAX_INTENTOS = 1000;
+const MAX_INTENTOS = 1;
 
 async function iniciarBotConReintentos() {
     while (intentos < MAX_INTENTOS) {
