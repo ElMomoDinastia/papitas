@@ -1,4 +1,4 @@
-name: Host - Recaptcha Rooms
+name: Host - Recaptcha Rooms - Group 3
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: haxball-recaptcha-hosts
+  group: haxball-recaptcha-hosts-group3
   cancel-in-progress: false
 
 jobs:
@@ -17,36 +17,35 @@ jobs:
       max-parallel: 15
       matrix:
         include:
-          - recaptcha_token: "thr1.AAAAAGmD94dDwXzq2FkV5g.n5Vqje9xby4"
+          - recaptcha_token: "thr1.AAAAAGmQxok336ocj6PQAA.OcKw0XzQwkw"
             index: 0
-          - recaptcha_token: "thr1.AAAAAGmD95M6tpY5VuVVbw.d4DtdxYnvic"
+          - recaptcha_token: "thr1.AAAAAGmQxpmjjYgd1NfYlA.kY52OQQomWc"
             index: 1
-          - recaptcha_token: "thr1.AAAAAGmD9510vsAdm5vNAQ.h_g0hCYpij8"
+          - recaptcha_token: "thr1.AAAAAGmQxrFBoJ5VREVFwQ.NosJcqjDK30"
             index: 2
-          - recaptcha_token: "thr1.AAAAAGmD96jwPsgGnVjQMw.JAN-FzO0iDY"
+          - recaptcha_token: "thr1.AAAAAGmQxsfwKqL-cu_qow.bAIXCLMxxvM"
             index: 3
-          - recaptcha_token: "thr1.AAAAAGmD97W3vlUtvUhulg.OvVmlr1gv0c"
+          - recaptcha_token: "thr1.AAAAAGmQxtlpLZCjfbhdUg.XQfuMG7hXI4"
             index: 4
-          - recaptcha_token: "thr1.AAAAAGmD98KxgWNIYBtrLA.V2XR_hm5iEI"
+          - recaptcha_token: "thr1.AAAAAGmQxuRmMVkeL6s-Jg.179O_CnBeBQ"
             index: 5
-          - recaptcha_token: "thr1.AAAAAGmD99jmkmca1m3Ymg.ZTYcGAgaSTQ"
+          - recaptcha_token: "thr1.AAAAAGmQxvp_t5CFmEwT7A.CVnncan9T08"
             index: 6
-          - recaptcha_token: "thr1.AAAAAGmD9-X3U4MyTnaVbA.65skhv75Gsw"
+          - recaptcha_token: "thr1.AAAAAGmQxwuHSIAhRhNunw.mIEiF6tjdK4"
             index: 7
-          - recaptcha_token: "thr1.AAAAAGmD9_VKrQ3wAM03sQ.TzY8RETvXlU"
+          - recaptcha_token: "thr1.AAAAAGmQxxw6BuMC9KE2Kg.8O9eEjZ-P4k"
             index: 8
-          - recaptcha_token: "thr1.AAAAAGmD-AcRmEuQ2zuCpw.Z9XQDkAT2PM"
+          - recaptcha_token: "thr1.AAAAAGmQxy6e7UoL2jm4CQ.XY7V_TRoMfg"
             index: 9
-          - recaptcha_token: "thr1.AAAAAGmD-CesZX27b2ZP4Q.dePF34kPT64"
+          - recaptcha_token: "thr1.AAAAAGmQxz0dOTnq8SHS2g.v6rGJAcXaJs"
             index: 10
-          - recaptcha_token: "thr1.AAAAAGmD-EsCqMnAWX4U0A.DSHPonVF0wM"
+          - recaptcha_token: "thr1.AAAAAGmQx09zGjBFSgf3RQ.qvPBfg89khI"
             index: 11
-          - recaptcha_token: "thr1.AAAAAGmD-FW8rrp87pDswQ.rZs-lStV7go"
+          - recaptcha_token: "thr1.AAAAAGmQx1xz3v1G6GABCA.vkjQwCH37Ek"
             index: 12
-          - recaptcha_token: "thr1.AAAAAGmD-GSPF_Xl4f00hQ.uG2pc3uAgaU"
+          - recaptcha_token: "thr1.AAAAAGmQx26DUP85aiH8mQ.aXjVIOPjQzQ"
             index: 13
-          - recaptcha_token: "thr1.AAAAAGmD-He0AALLBobT6g.qhsGz2o62uk"
-            index: 14
+
     steps:
       - name: 🧩 Checkout repo
         uses: actions/checkout@v4
