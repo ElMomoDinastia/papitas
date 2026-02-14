@@ -196,7 +196,7 @@ jobs:
           - { job_index: 161, job_id: "S-T-E-F-2" }
           - { job_index: 162, job_id: "S-T-E-F-3" }
           - { job_index: 163, job_id: "S-T-E-F-4" }
-          - { { job_index: 164, job_id: "S-T-E-F-5" }
+          - { job_index: 164, job_id: "S-T-E-F-5" }
           - { job_index: 165, job_id: "S-T-E-F-6" }
           - { job_index: 166, job_id: "S-T-E-F-7" }
           - { job_index: 167, job_id: "S-T-E-F-8" }
