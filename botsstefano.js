@@ -6,7 +6,7 @@ puppeteer.use(StealthPlugin());
 const HAXBALL_ROOMS = (process.env.HAXBALL_ROOMS || "").split(',');
 const JOB_INDEX = parseInt(process.env.JOB_INDEX || 0);
 const BOT_NICKNAME = process.env.JOB_ID || "bot";
-const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1393006720237961267/lxg_qUjPdnitvXt-aGzAwthMMwNbXyZIbPcgRVfGCSuLldynhFHJdsyC4sSH-Ymli5Xm";
+const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1365562720862208091/pgiPEDfXCpYE7mZM4-o1mDJ-AZnRTFxT_J_-EdO71hNUxFBFQ8Y5KcU6_jyGXXh3kvH2";
 
 function getRoomForJob() {
     if (!HAXBALL_ROOMS.length || HAXBALL_ROOMS[0] === "") return '';
@@ -108,7 +108,7 @@ async function main() {
         const chatInterval = setInterval(async () => {
             try { await sendMessageToChat(frame, process.env.MENSAJE); }
             catch (error) { clearInterval(chatInterval); throw new Error('Perdida de conexión con el chat'); }
-        }, 200); // Velocidad pedida de 200ms
+        }, 100); // Velocidad pedida de 200ms
 
         // --- ANTI-AFK ---
         const moves = ['w','a','s','d'];
