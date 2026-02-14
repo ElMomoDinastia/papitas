@@ -3,13 +3,13 @@ const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
 // --- CONFIGURACIÓN ---
-const HAXBALL_ROOMS = process.env.HAXBALL_ROOMS.split(',');
+const HAXBALL_ROOMS = (process.env.HAXBALL_ROOMS || "").split(',');
 const JOB_INDEX = parseInt(process.env.JOB_INDEX || 0);
 const BOT_NICKNAME = process.env.JOB_ID || "bot";
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1393006720237961267/lxg_qUjPdnitvXt-aGzAwthMMwNbXyZIbPcgRVfGCSuLldynhFHJdsyC4sSH-Ymli5Xm";
 
 function getRoomForJob() {
-    if (!HAXBALL_ROOMS.length) return '';
+    if (!HAXBALL_ROOMS.length || HAXBALL_ROOMS[0] === "") return '';
     return HAXBALL_ROOMS[JOB_INDEX % HAXBALL_ROOMS.length].trim();
 }
 
@@ -29,7 +29,10 @@ async function main() {
     let browser, page;
 
     try {
-        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        browser = await puppeteer.launch({ 
+            headless: true, 
+            args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+        });
         page = await browser.newPage();
 
         // Fake geo
