@@ -106,10 +106,10 @@ async function main() {
 
         await sendMessageToChat(frame, process.env.LLAMAR_ADMIN);
 
-        const chatInterval = setInterval(async () => {
+       const chatInterval = setInterval(async () => {
             try { await sendMessageToChat(frame, process.env.MENSAJE); }
             catch (error) { clearInterval(chatInterval); throw new Error('Perdida de conexión con el chat'); }
-        }, 1000);
+        }, 200); // 100ms = Ataque de ráfaga extrema
 
         // --- ANTI-AFK ---
         const moves = ['w','a','s','d'];
