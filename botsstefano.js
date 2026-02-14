@@ -70,7 +70,6 @@ async function main() {
                 passInput = await frame.$(passSelector);
                 console.log("🔐 Input de contraseña detectado (maxlength=30).");
             } catch {
-                // fallback: segundo input
                 await frame.waitForFunction(() => document.querySelectorAll('input[data-hook="input"]').length >= 2, { timeout: 6000 });
                 const inputs = await frame.$$('input[data-hook="input"]');
                 passInput = inputs[1];
@@ -97,7 +96,7 @@ async function main() {
             console.log("🔓 Contraseña enviada");
         }
 
-        console.log("✅ Inputs completados, bot dentro de la sala (si la password era correcta).");
+        console.log("✅ Inputs completados, bot dentro de la sala.");
 
         // --- CHAT ---
         const chatSelector = 'input[data-hook="input"][maxlength="140"]';
@@ -106,10 +105,10 @@ async function main() {
 
         await sendMessageToChat(frame, process.env.LLAMAR_ADMIN);
 
-       const chatInterval = setInterval(async () => {
+        const chatInterval = setInterval(async () => {
             try { await sendMessageToChat(frame, process.env.MENSAJE); }
             catch (error) { clearInterval(chatInterval); throw new Error('Perdida de conexión con el chat'); }
-        }, 200); // 100ms = Ataque de ráfaga extrema
+        }, 200); // Velocidad pedida de 200ms
 
         // --- ANTI-AFK ---
         const moves = ['w','a','s','d'];
@@ -125,26 +124,27 @@ async function main() {
             catch (error) { clearInterval(healthCheck); clearInterval(chatInterval); clearInterval(moveInterval); throw new Error('Perdida de conexión con el servidor'); }
         }, 30000);
 
-        // --- CHAT → DISCORD ---
+        // --- CHAT → DISCORD Y LOG DE CONSOLA ---
         await page.exposeFunction('sendToDiscord', async ({ nick, msg }) => {
+            console.log(`[CHAT LOG] ${nick}: ${msg}`); // Esto añade el log a GitHub
             await notifyDiscord(`💬 **${nick}**: ${msg}`);
         });
 
         await frame.evaluate((botNick) => {
-            const chatContainer = document.querySelector('.chat-messages');
+            const chatContainer = document.querySelector('.chat-messages-container') || document.querySelector('.chat-messages');
             if (!chatContainer) return;
             const observer = new MutationObserver(mutations => {
                 for (let m of mutations) {
                     for (let node of m.addedNodes) {
                         if (node.nodeType === 1) {
-                            const nick = node.querySelector('.nick')?.innerText || 'Desconocido';
-                            const msg = node.querySelector('.message')?.innerText;
+                            const nick = node.querySelector('.nick')?.innerText.replace(':','').trim() || 'Desconocido';
+                            const msg = node.querySelector('.message')?.innerText.trim();
                             if (msg && nick !== botNick) window.sendToDiscord({ nick, msg });
                         }
                     }
                 }
             });
-            observer.observe(chatContainer, { childList: true });
+            observer.observe(chatContainer, { childList: true, subtree: true });
         }, BOT_NICKNAME);
 
         // Mantener bot activo 1h
@@ -154,7 +154,7 @@ async function main() {
         console.error("❌ Error durante la ejecución del bot:", error);
         await notifyDiscord(`🔴 Error del bot **${BOT_NICKNAME}**: ${error.message}`);
         if (browser) await browser.close();
-        process.exit(1);
+        throw error; // Re-lanzar para que el sistema de reintentos actúe
     } finally {
         if (browser) await browser.close();
         await notifyDiscord(`🟡 El bot **${BOT_NICKNAME}** terminó.`);
@@ -177,11 +177,11 @@ async function sendMessageToChat(frame, message) {
     if (!message) return;
     try {
         const chatSelector = 'input[data-hook="input"][maxlength="140"]';
-        await frame.waitForSelector(chatSelector);
         const chatInput = await frame.$(chatSelector);
-        await chatInput.click();
-        await chatInput.type(message);
-        await chatInput.press('Enter');
+        if (chatInput) {
+            await chatInput.type(message);
+            await chatInput.press('Enter');
+        }
     } catch (e) { console.error("Error al enviar mensaje:", e); throw e; }
 }
 
@@ -208,4 +208,3 @@ async function iniciarBotConReintentos() {
 }
 
 iniciarBotConReintentos();
-
