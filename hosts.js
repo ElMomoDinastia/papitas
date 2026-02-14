@@ -68,7 +68,7 @@ async function sendDiscordRoomLink(webhookUrl, roomLink, roomName) {
 /* ---------- Config (modificable / rotativo por INDEX) ---------- */
 
 const roomNames = [
-    "🔴⚫ AL PIE DE LA LETRA BUSCA JUGS⚫🔴"
+    "🐌 ❤️ 😍  TRY   X    MARTU  😍 ❤️ 🐌"
 ];
 
 // LISTA DE GEOS SOLICITADAS
@@ -80,8 +80,8 @@ const geoList = [
     { lat: -34.5468559265137, lon: -58.4656677246094, flag: "AR" }
 ];
 
-const maxPlayersList = [30, 30, 30, 30, 30];
-const fakePlayersList = [29, 28, 29, 25, 12];
+const maxPlayersList = [2, 2, 2, 2, 2];
+const fakePlayersList = [14, 14, 14, 14, 14];
 
 /* ---------- Env / selección por index ---------- */
 
