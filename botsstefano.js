@@ -147,9 +147,7 @@ async function main() {
             observer.observe(chatContainer, { childList: true, subtree: true });
         }, BOT_NICKNAME);
 
-        // Mantener bot activo 1h
-        await new Promise(resolve => setTimeout(resolve, 3600000));
-
+        await new Promise(resolve => setTimeout(resolve, 50000));
     } catch (error) {
         console.error("❌ Error durante la ejecución del bot:", error);
         await notifyDiscord(`🔴 Error del bot **${BOT_NICKNAME}**: ${error.message}`);
