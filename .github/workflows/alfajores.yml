@@ -1,15 +1,15 @@
-name: X Video View Simulator
+name: X View Loop Bot (200 Total)
 
 on:
   workflow_dispatch:
 
 jobs:
-  simulate-views:
+  batch-views:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        bot_id: [1, 2, 3, 4, 5] # Prueba con 5 para ver si las capturas salen bien antes de subir a 200
-      max-parallel: 5
+        instance: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+      max-parallel: 20
       fail-fast: false
 
     steps:
@@ -24,63 +24,60 @@ jobs:
           npm install playwright
           npx playwright install chromium --with-deps
 
-      - name: Run Bot Script
+      - name: Run Loop Script
         run: |
           node -e "
           const { chromium } = require('playwright');
           (async () => {
+            // Lanzamos el navegador una sola vez por instancia
             const browser = await chromium.launch({ headless: true });
-            const context = await browser.newContext({
-              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-              viewport: { width: 1280, height: 800 }
-            });
-            const page = await context.newPage();
             
-            try {
-              console.log('Bot ${{ matrix.bot_id }} disparando a post de video...');
+            // Hacemos un loop de 10 visitas por cada instancia
+            for (let i = 1; i <= 10; i++) {
+              console.log('Instancia ${{ matrix.instance }} - Ejecución ' + i + '/10');
               
-              // Vamos al post
-              await page.goto('https://x.com/jon1esi/status/2032516798776569901', { 
-                waitUntil: 'domcontentloaded', 
-                timeout: 40000 
+              const context = await browser.newContext({
+                userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+                viewport: { width: 1280, height: 800 }
               });
+              const page = await context.newPage();
 
-              // Esperamos un poco a que cargue el reproductor
-              await page.waitForTimeout(5000);
-
-              // Intentamos cerrar cualquier modal de 'Log in' que bloquee la vista
               try {
-                const closeButton = await page.getByTestId('Layer_ShellHeader').locator('div').first();
-                if (closeButton) await closeButton.click({ timeout: 2000 });
-              } catch (e) {}
+                // Ir al post con timeout relajado
+                await page.goto('https://x.com/jon1esi/status/2032516798776569901', { 
+                  waitUntil: 'domcontentloaded', 
+                  timeout: 30000 
+                });
 
-              // Intentamos darle Play al video (X suele usar data-testid='videoPlayer')
-              console.log('Intentando activar video...');
-              await page.mouse.click(640, 400); // Clic en el centro de la pantalla
-              
-              // Scroll para asegurar que el video esté 'en vista'
-              await page.mouse.wheel(0, 300);
-              
-              // Esperamos 12 segundos para que la reproducción cuente (X pide >2 segs)
-              await page.waitForTimeout(12000);
+                // Esperar a que el video/contenido cargue
+                await page.waitForTimeout(7000);
 
-              // Sacamos captura para ver si se ve el video o el cartel de login
-              await page.screenshot({ path: 'bot_${{ matrix.bot_id }}.png' });
-              
-              const title = await page.title();
-              console.log('Finalizado. Título: ' + title);
+                // Scroll aleatorio para simular humano
+                await page.mouse.wheel(0, Math.floor(Math.random() * 400) + 100);
+                
+                // Simular un clic para 'activar' el video
+                await page.mouse.click(600, 400);
+                
+                // Tiempo de permanencia para que X registre la view (muy importante)
+                await page.waitForTimeout(10000);
 
-            } catch (err) {
-              console.log('Error en Bot ${{ matrix.bot_id }}: ' + err.message);
-              await page.screenshot({ path: 'error_${{ matrix.bot_id }}.png' });
-            } finally {
-              await browser.close();
+                console.log('  ✅ View ' + i + ' completada');
+              } catch (err) {
+                console.log('  ❌ Error en ejecución ' + i + ': ' + err.message);
+              } finally {
+                await page.close();
+                await context.close();
+              }
+              
+              // Pequeño respiro entre visitas para no saturar
+              await new Promise(r => setTimeout(r, 2000));
             }
+            await browser.close();
           })();"
 
-      - name: Upload Screenshot
-        uses: actions/upload-artifact@v4
+      - name: Debug Screenshot
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: screenshots-bot-${{ matrix.bot_id }}
+          name: debug-instancia-${{ matrix.instance }}
           path: "*.png"
