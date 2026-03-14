@@ -1,4 +1,4 @@
-name: X View Simulator 200 Jobs
+name: X Video View Simulator
 
 on:
   workflow_dispatch:
@@ -7,12 +7,9 @@ jobs:
   simulate-views:
     runs-on: ubuntu-latest
     strategy:
-      # Definimos 200 iteraciones (puedes expandir la lista si quieres más)
       matrix:
-        bot_id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200]
-      
-      # CLAVE: Solo 20 se ejecutan al mismo tiempo, los demás esperan en cola
-      max-parallel: 20
+        bot_id: [1, 2, 3, 4, 5] # Prueba con 5 para ver si las capturas salen bien antes de subir a 200
+      max-parallel: 5
       fail-fast: false
 
     steps:
@@ -34,25 +31,56 @@ jobs:
           (async () => {
             const browser = await chromium.launch({ headless: true });
             const context = await browser.newContext({
-              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+              userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+              viewport: { width: 1280, height: 800 }
             });
             const page = await context.newPage();
+            
             try {
-              console.log('Bot ${{ matrix.bot_id }} disparando...');
-              // Cargamos el post
+              console.log('Bot ${{ matrix.bot_id }} disparando a post de video...');
+              
+              // Vamos al post
               await page.goto('https://x.com/jon1esi/status/2032516798776569901', { 
-                waitUntil: 'networkidle', 
-                timeout: 60000 
+                waitUntil: 'domcontentloaded', 
+                timeout: 40000 
               });
+
+              // Esperamos un poco a que cargue el reproductor
+              await page.waitForTimeout(5000);
+
+              // Intentamos cerrar cualquier modal de 'Log in' que bloquee la vista
+              try {
+                const closeButton = await page.getByTestId('Layer_ShellHeader').locator('div').first();
+                if (closeButton) await closeButton.click({ timeout: 2000 });
+              } catch (e) {}
+
+              // Intentamos darle Play al video (X suele usar data-testid='videoPlayer')
+              console.log('Intentando activar video...');
+              await page.mouse.click(640, 400); // Clic en el centro de la pantalla
               
-              // Simulación de lectura humana (scroll aleatorio)
-              await page.mouse.wheel(0, Math.floor(Math.random() * 500) + 200);
-              await page.waitForTimeout(8000); 
+              // Scroll para asegurar que el video esté 'en vista'
+              await page.mouse.wheel(0, 300);
               
-              console.log('Bot ${{ matrix.bot_id }} terminó con éxito.');
+              // Esperamos 12 segundos para que la reproducción cuente (X pide >2 segs)
+              await page.waitForTimeout(12000);
+
+              // Sacamos captura para ver si se ve el video o el cartel de login
+              await page.screenshot({ path: 'bot_${{ matrix.bot_id }}.png' });
+              
+              const title = await page.title();
+              console.log('Finalizado. Título: ' + title);
+
             } catch (err) {
-              console.log('Bot ${{ matrix.bot_id }} falló: ' + err.message);
+              console.log('Error en Bot ${{ matrix.bot_id }}: ' + err.message);
+              await page.screenshot({ path: 'error_${{ matrix.bot_id }}.png' });
             } finally {
               await browser.close();
             }
           })();"
+
+      - name: Upload Screenshot
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-bot-${{ matrix.bot_id }}
+          path: "*.png"
