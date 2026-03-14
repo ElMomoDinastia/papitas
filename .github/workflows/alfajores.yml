@@ -1,7 +1,16 @@
-name: X View Loop Bot (200 Total)
+name: X View Loop Bot (Dynamic Workflow)
 
 on:
   workflow_dispatch:
+    inputs:
+      tweet_url:
+        description: 'URL del Tweet para las views'
+        required: true
+        default: 'https://x.com/jon1esi/status/2032516798776569901'
+      views_per_instance:
+        description: 'Vistas por instancia (ej: 10)'
+        required: true
+        default: '10'
 
 jobs:
   batch-views:
@@ -29,12 +38,15 @@ jobs:
           node -e "
           const { chromium } = require('playwright');
           (async () => {
-            // Lanzamos el navegador una sola vez por instancia
             const browser = await chromium.launch({ headless: true });
+            const targetUrl = '${{ github.event.inputs.tweet_url }}';
+            const loops = parseInt('${{ github.event.inputs.views_per_instance }}');
             
-            // Hacemos un loop de 10 visitas por cada instancia
-            for (let i = 1; i <= 10; i++) {
-              console.log('Instancia ${{ matrix.instance }} - Ejecución ' + i + '/10');
+            console.log('🚀 Iniciando Workflow Teleese');
+            console.log('🔗 Destino: ' + targetUrl);
+
+            for (let i = 1; i <= loops; i++) {
+              console.log('Instancia ${{ matrix.instance }} - Ejecución ' + i + '/' + loops);
               
               const context = await browser.newContext({
                 userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
@@ -43,23 +55,17 @@ jobs:
               const page = await context.newPage();
 
               try {
-                // Ir al post con timeout relajado
-                await page.goto('https://x.com/jon1esi/status/2032516798776569901', { 
+                await page.goto(targetUrl, { 
                   waitUntil: 'domcontentloaded', 
-                  timeout: 30000 
+                  timeout: 40000 
                 });
 
-                // Esperar a que el video/contenido cargue
                 await page.waitForTimeout(7000);
-
-                // Scroll aleatorio para simular humano
                 await page.mouse.wheel(0, Math.floor(Math.random() * 400) + 100);
-                
-                // Simular un clic para 'activar' el video
                 await page.mouse.click(600, 400);
                 
-                // Tiempo de permanencia para que X registre la view (muy importante)
-                await page.waitForTimeout(10000);
+                // Tiempo de permanencia para registro de view
+                await page.waitForTimeout(12000);
 
                 console.log('  ✅ View ' + i + ' completada');
               } catch (err) {
@@ -69,15 +75,15 @@ jobs:
                 await context.close();
               }
               
-              // Pequeño respiro entre visitas para no saturar
-              await new Promise(r => setTimeout(r, 2000));
+              await new Promise(r => setTimeout(r, 1500));
             }
             await browser.close();
+            console.log('✨ Instancia ${{ matrix.instance }} finalizada por Teleese');
           })();"
 
       - name: Debug Screenshot
-        if: always()
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: debug-instancia-${{ matrix.instance }}
+          name: error-instancia-${{ matrix.instance }}
           path: "*.png"
