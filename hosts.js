@@ -68,7 +68,7 @@ async function sendDiscordRoomLink(webhookUrl, roomLink, roomName) {
 /* ---------- Config (modificable / rotativo por INDEX) ---------- */
 
 const roomNames = [
-    "🐌 ❤️ 😍  TRY   X    MARTU  😍 ❤️ 🐌"
+  "⚠️ 𝗞𝗜𝗖𝗞.𝗖𝗢𝗠/𝗖𝗭𝗘𝗥𝗥𝗢 ⚠️ [ 𝗕𝘆 𝗧𝗲𝗹𝗲𝗲𝘀𝗲 ]"
 ];
 
 // LISTA DE GEOS SOLICITADAS
@@ -142,14 +142,7 @@ Room.create(
                 sendDiscordPlayer(webhookUrl, playerObj, roomName);
 
                 const mensajes = [
-                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
-                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
-                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
-                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
-                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
-                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
-                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD",
-                    "Unite al Discord para postularte: https://discord.gg/Q3AWejsSxD"
+                    "Unite al Discord para postularte: https://discord.gg/8PBf3ncQu"
                 ];
 
                 let i = 0;
