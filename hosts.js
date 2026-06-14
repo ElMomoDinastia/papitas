@@ -68,16 +68,12 @@ async function sendDiscordRoomLink(webhookUrl, roomLink, roomName) {
 /* ---------- Config (modificable / rotativo por INDEX) ---------- */
 
 const roomNames = [
-  "⚠️ 𝗞𝗜𝗖𝗞.𝗖𝗢𝗠/𝗖𝗭𝗘𝗥𝗥𝗢 ⚠️ [ 𝗕𝘆 𝗧𝗲𝗹𝗲𝗲𝘀𝗲 ]"
+  "➔ KICK.COM/CZERRO ➔ By TLS"
 ];
 
 // LISTA DE GEOS SOLICITADAS
 const geoList = [
-    { lat: -34.4795570373535, lon: -58.4380226135254, flag: "AR" },
-    { lat: -34.5, lon: -58.4000015258789, flag: "AR" },
-    { lat: -32.5200004577637, lon: -55.7599983215332, flag: "AR" },
-    { lat: -34.5330009460449, lon: -34.5330009460449, flag: "AR" },
-    { lat: -34.5468559265137, lon: -58.4656677246094, flag: "AR" }
+    { lat: -34.5670013427734, lon: -58.4669990539551, flag: "XK" }
 ];
 
 const maxPlayersList = [2, 2, 2, 2, 2];
@@ -142,7 +138,7 @@ Room.create(
                 sendDiscordPlayer(webhookUrl, playerObj, roomName);
 
                 const mensajes = [
-                    "Unite al Discord para postularte: https://discord.gg/8PBf3ncQu"
+                    "UNITE AL DISCORD: https://discord.gg/Fht2WhVMN"
                 ];
 
                 let i = 0;
