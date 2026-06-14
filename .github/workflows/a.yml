@@ -1,4 +1,4 @@
-name: Host - Recaptcha Rooms - Group 3
+name: Host - Recaptcha Rooms
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: haxball-recaptcha-hosts-group3
+  group: haxball-recaptcha-hosts
   cancel-in-progress: false
 
 jobs:
@@ -14,44 +14,45 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      max-parallel: 15
+      max-parallel: 16
       matrix:
         include:
-          - recaptcha_token: "thr1.AAAAAGotilCcc5N-HHrIqg.vwKP89YOfzU"
+          - recaptcha_token: "thr1.AAAAAGou_ERwrACBUei8lw.LQsWOsc7-ag"
             index: 0
-          - recaptcha_token: "thr1.AAAAAGotilt7PQW3CuBAuQ.jZnmVKI4Za4"
+          - recaptcha_token: "thr1.AAAAAGou_GrhkMv-KhiVCQ.ctRusF9Zt30"
             index: 1
-          - recaptcha_token: "thr1.AAAAAGotimUBVXZ_Co2dEw.SOIyqkNk2bQ"
+          - recaptcha_token: "thr1.AAAAAGou_H7ihcyHHWazpQ.jP69gBE-Udg"
             index: 2
-          - recaptcha_token: "thr1.AAAAAGotim9dYqBI8luPdw.hZ25xtLeK_w"
+          - recaptcha_token: "thr1.AAAAAGou_JE11X4oug3kyw.O0DYQ_3XAJY"
             index: 3
-          - recaptcha_token: "thr1.AAAAAGotinsgf4UthVdHyw.R7NnAbICZFk"
+          - recaptcha_token: "thr1.AAAAAGou_J-diQ_Nnz8lUw.M6mOPFRfkGs"
             index: 4
-          - recaptcha_token: "thr1.AAAAAGotioYd-d0ooyvGPw.t2Nbe1r-YxU"
+          - recaptcha_token: "thr1.AAAAAGou_Mrf29038QI_ZQ.Ge6-lUv43NY"
             index: 5
-          - recaptcha_token: "thr1.AAAAAGotipEWpf2vR37KsA.peViXXFgmeE"
+          - recaptcha_token: "thr1.AAAAAGou_PgPeZ6rD2GATA.2ZXpJi12O2U"
             index: 6
-          - recaptcha_token: "thr1.AAAAAGotiqSIyImjL5Yilg.frFHum_Izbg"
+          - recaptcha_token: "thr1.AAAAAGou_S7Tg-bmfqeCEQ.f0a3IEEI2VU"
             index: 7
-          - recaptcha_token: "thr1.AAAAAGotirAkmu-I0P2YYQ.22-D6V9iB2o"
+          - recaptcha_token: "thr1.AAAAAGou_UZu4KW0xSE8qw.3Tr80gUk9Hg"
             index: 8
-          - recaptcha_token: "thr1.AAAAAGotiryBtIT1XeCytw.-I_Go9FyNrQ"
+          - recaptcha_token: "thr1.AAAAAGou_VVdFEjuNdyQZw.qzPE9bq_NoE"
             index: 9
-          - recaptcha_token: "thr1.AAAAAGotisfi25E0gwXjFA.-idsBDKJOP0"
+          - recaptcha_token: "thr1.AAAAAGou_W03i5pe2p8vlg.u5gXVP7Ysnw"
             index: 10
-          - recaptcha_token: "thr1.AAAAAGotitfPBTO9hA4rcA.G3-XKtLh3jc"
+          - recaptcha_token: "thr1.AAAAAGou_X-xjOYq_rTOGQ.M3c_Q9gwBu4"
             index: 11
-          - recaptcha_token: "thr1.AAAAAGotiuaGyO9XLaSNFQ.2i9ktsElAS8"
+          - recaptcha_token: "thr1.AAAAAGou_Y6ILePAYMOYcw.wB9wSMcwMs4"
             index: 12
-          - recaptcha_token: "thr1.AAAAAGotivFyD6mfb8Wj1g.2gvOqnDgifA"
+          - recaptcha_token: "thr1.AAAAAGou_aiwls4EiE7_Rw.FBYlpfg1uPo"
             index: 13
+          - recaptcha_token: "thr1.AAAAAGou_cLO0yuEY2Hb_g.cY9ZWjrKq-o"
+            index: 14
+          - recaptcha_token: "thr1.AAAAAGou_bfV3AZOFm0z-A.pI_tbL6gAx0"
+            index: 15
 
     steps:
       - name: 🧩 Checkout repo
         uses: actions/checkout@v4
-
-      - name: 🧹 Limpiar entorno previo
-        run: rm -rf node_modules package-lock.json
 
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
